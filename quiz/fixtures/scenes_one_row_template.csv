@@ -1,0 +1,2 @@
+difficulty,title,historical_period,event_year,description,panorama_url,q1_text,q1_explanation,q1_answer_1,q1_answer_2,q1_answer_3,q1_answer_4,q1_correct_index,q2_text,q2_explanation,q2_answer_1,q2_answer_2,q2_answer_3,q2_answer_4,q2_correct_index,scene_image
+easy,Пример сцены,Древняя Русь,988,Краткое описание для админки (в игре не показывается).,,Кто крестил Русь?,Правильный ответ — князь Владимир.,Олег,Игорь,Владимир,Святослав,3,В каком году крещение Киева?,Киев крестили в конце X века.,980,988,1015,1054,2,

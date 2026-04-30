@@ -1,0 +1,33 @@
+[
+  {
+    "difficulty": "easy",
+    "title": "Пример сцены (JSON)",
+    "historical_period": "Древняя Русь",
+    "event_year": "988",
+    "description": "Описание для админки; в прохождении не показывается.",
+    "panorama_url": "",
+    "image_file": "",
+    "questions": [
+      {
+        "text": "Кто крестил Русь?",
+        "explanation": "Князь Владимир Святославич.",
+        "answers": [
+          { "text": "Олег", "correct": false },
+          { "text": "Игорь", "correct": false },
+          { "text": "Владимир", "correct": true },
+          { "text": "Святослав", "correct": false }
+        ]
+      },
+      {
+        "text": "В каком году крещение Киева?",
+        "explanation": "Принято считать 988 год.",
+        "answers": [
+          { "text": "980", "correct": false },
+          { "text": "988", "correct": true },
+          { "text": "1015", "correct": false },
+          { "text": "1054", "correct": false }
+        ]
+      }
+    ]
+  }
+]
