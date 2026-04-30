@@ -1,0 +1,233 @@
+[
+  {
+    "model": "quiz.scene",
+    "pk": 1,
+    "fields": {
+      "title": "Оборона крепости",
+      "historical_period": "XIX век",
+      "event_year": "1812",
+      "difficulty": "easy",
+      "image": "",
+      "panorama_url": "https://pannellum.org/images/alma.jpg",
+      "description": "Сцена с панорамной картиной обороны крепости во время войны. Двигайте мышкой, чтобы осмотреть сцену со всех сторон.",
+      "is_active": true,
+      "created_at": "2026-04-29T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.scene",
+    "pk": 2,
+    "fields": {
+      "title": "Заседание правителей",
+      "historical_period": "XVII век",
+      "event_year": "1649",
+      "difficulty": "medium",
+      "image": "",
+      "panorama_url": "https://pannellum.org/images/bma-1.jpg",
+      "description": "Панорама заседания правителей и советников. Исследуйте помещение, двигая мышкой.",
+      "is_active": true,
+      "created_at": "2026-04-29T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.scene",
+    "pk": 3,
+    "fields": {
+      "title": "Победа на поле боя",
+      "historical_period": "XVIII век",
+      "event_year": "1709",
+      "difficulty": "hard",
+      "image": "",
+      "panorama_url": "https://pannellum.org/images/cerro-toco-0.jpg",
+      "description": "Сцена после решающего сражения на поле боя. Осмотрите панораму, чтобы лучше понять атмосферу.",
+      "is_active": true,
+      "created_at": "2026-04-29T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1,
+    "fields": {
+      "scene": 1,
+      "text": "Где вероятно происходят события этой сцены?",
+      "explanation": "Сцена напоминает оборону крепости в начале XIX века.",
+      "order": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 2,
+    "fields": {
+      "scene": 1,
+      "text": "Какой год наиболее подходит к сцене?",
+      "explanation": "1812 год связан с войной и обороной крепостей.",
+      "order": 2,
+      "is_active": true
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 3,
+    "fields": {
+      "scene": 2,
+      "text": "Какой характер имеет встреча на картине?",
+      "explanation": "Это официальное заседание правителей.",
+      "order": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 4,
+    "fields": {
+      "scene": 2,
+      "text": "Какой год может соответствовать картине?",
+      "explanation": "1649 год соответствует событию из XVII века.",
+      "order": 2,
+      "is_active": true
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 5,
+    "fields": {
+      "scene": 3,
+      "text": "Что произошло на этой сцене?",
+      "explanation": "Это сцена победы на поле боя.",
+      "order": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 6,
+    "fields": {
+      "scene": 3,
+      "text": "Какая из дат подходит к сцене?",
+      "explanation": "1709 год — это эпоха Великих Северных войн.",
+      "order": 2,
+      "is_active": true
+    }
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 1,
+    "fields": {"question": 1, "text": "В крепости", "is_correct": true}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 2,
+    "fields": {"question": 1, "text": "На рынке", "is_correct": false}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 3,
+    "fields": {"question": 1, "text": "В деревне", "is_correct": false}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 4,
+    "fields": {"question": 1, "text": "На корабле", "is_correct": false}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 5,
+    "fields": {"question": 2, "text": "1812", "is_correct": true}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 6,
+    "fields": {"question": 2, "text": "1917", "is_correct": false}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 7,
+    "fields": {"question": 2, "text": "1703", "is_correct": false}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 8,
+    "fields": {"question": 2, "text": "1815", "is_correct": false}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 9,
+    "fields": {"question": 3, "text": "Заседание", "is_correct": true}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 10,
+    "fields": {"question": 3, "text": "Праздник", "is_correct": false}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 11,
+    "fields": {"question": 3, "text": "Битва", "is_correct": false}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 12,
+    "fields": {"question": 3, "text": "Торжественный обед", "is_correct": false}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 13,
+    "fields": {"question": 4, "text": "1649", "is_correct": true}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 14,
+    "fields": {"question": 4, "text": "1789", "is_correct": false}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 15,
+    "fields": {"question": 4, "text": "1914", "is_correct": false}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 16,
+    "fields": {"question": 4, "text": "1805", "is_correct": false}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 17,
+    "fields": {"question": 5, "text": "Победа на поле боя", "is_correct": true}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 18,
+    "fields": {"question": 5, "text": "Торжественный бал", "is_correct": false}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 19,
+    "fields": {"question": 5, "text": "Мирные переговоры", "is_correct": false}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 20,
+    "fields": {"question": 5, "text": "Экспедиция", "is_correct": false}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 21,
+    "fields": {"question": 6, "text": "1709", "is_correct": true}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 22,
+    "fields": {"question": 6, "text": "1812", "is_correct": false}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 23,
+    "fields": {"question": 6, "text": "1605", "is_correct": false}
+  },
+  {
+    "model": "quiz.answeroption",
+    "pk": 24,
+    "fields": {"question": 6, "text": "1917", "is_correct": false}
+  }
+]

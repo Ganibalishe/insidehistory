@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InsideHistory — история в сценах</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" />
+    <link rel="stylesheet" href="{% static 'quiz/styles.css' %}?v=20260430g" />
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js" defer></script>
+    <script src="{% static 'quiz/quiz.js' %}?v=20260430g" defer></script>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="topbar">
+            <a class="logo" href="{% url 'home' %}">InsideHistory</a>
+        </header>
+        <main class="page-container">
+            {% block content %}{% endblock %}
+        </main>
+        <footer class="footer">
+            <p>Смотри сцены. Думай. Понимай историю.</p>
+        </footer>
+    </div>
+</body>
+</html>

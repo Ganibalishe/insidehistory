@@ -1,0 +1,8 @@
+{% extends 'quiz/base.html' %}
+{% block content %}
+<section class="info-card">
+    <h1>Пока нет доступных сцен</h1>
+    <p>Для уровня «{{ difficulty }}» ещё нет активных сцен с двумя вопросами. Попробуйте другой уровень позже.</p>
+    <a class="button button-primary" href="{% url 'difficulty_select' %}">Выбрать другой уровень</a>
+</section>
+{% endblock %}

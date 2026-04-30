@@ -1,0 +1,36 @@
+{% extends 'quiz/base.html' %}
+{% block content %}
+<section class="result-card">
+    <div class="result-summary result-block">
+        <p class="eyebrow">Результат</p>
+        <h1>{{ result_title }}</h1>
+        <p class="small-text result-percent">Точность: {{ percent }}%</p>
+    </div>
+
+    <div class="result-interpretation result-block">
+        <p class="result-text">{{ result_text }}</p>
+    </div>
+
+    <div class="result-actions result-block">
+        <a class="button button-primary result-cta-main" href="{% url 'quiz_start' %}?difficulty={{ quiz_session.difficulty }}">{{ primary_cta }}</a>
+        <a class="button button-secondary result-cta-secondary" href="{% url 'quiz_start' %}?difficulty={{ quiz_session.difficulty }}">Попробовать ещё раз</a>
+        <a class="button button-ghost result-cta-tertiary" href="{% url 'difficulty_select' %}">Другой уровень</a>
+    </div>
+
+    <form class="feedback-form result-block" action="{% url 'quiz_feedback' session_id=quiz_session.pk %}" method="post">
+        {% csrf_token %}
+        <p class="eyebrow">Было интересно?</p>
+        <div class="radio-group">
+            <label><input type="radio" name="was_interesting" value="yes" {% if feedback and feedback.was_interesting %}checked{% endif %}> 👍 Да</label>
+            <label><input type="radio" name="was_interesting" value="no" {% if feedback and not feedback.was_interesting %}checked{% endif %}> 👎 Нет</label>
+        </div>
+        <label class="textarea-label">
+            <textarea name="comment" rows="3" placeholder="Что можно улучшить? (по желанию)">{% if feedback %}{{ feedback.comment }}{% endif %}</textarea>
+        </label>
+        <button class="button button-secondary feedback-submit" type="submit">Отправить</button>
+        {% if feedback %}
+            <p class="thanks-text">Спасибо! Мы учтём ваш фидбек.</p>
+        {% endif %}
+    </form>
+</section>
+{% endblock %}

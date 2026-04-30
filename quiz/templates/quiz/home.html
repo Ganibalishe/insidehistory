@@ -1,0 +1,15 @@
+{% extends 'quiz/base.html' %}
+{% block content %}
+<section class="hero">
+    <div class="hero-copy">
+        <p class="eyebrow">История в картинках</p>
+        <h1>Проверь, насколько ты разбираешься в истории</h1>
+        <p class="hero-text">Смотри сцены и отвечай на вопросы.</p>
+        <a class="button button-primary" href="{% url 'difficulty_select' %}">Начать</a>
+    </div>
+    <div class="hero-image">
+        <div id="hero-panorama" class="hero-panorama" data-image-url="/media/scenes/main.png"></div>
+        <img id="hero-fallback" src="/media/scenes/main.png" alt="Панорама" class="scene-image" style="display: none;">
+    </div>
+</section>
+{% endblock %}

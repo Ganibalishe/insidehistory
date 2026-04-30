@@ -1,0 +1,52 @@
+{% extends 'quiz/base.html' %}
+{% block content %}
+<section class="quiz-shell" id="quiz-shell" data-answer-url="{{ answer_url }}" data-question-id="{{ question.pk }}" data-is-first-scene="{% if scene_number == 1 %}true{% else %}false{% endif %}">
+    <div class="quiz-header">
+        <div>
+            <p class="eyebrow">Сцена {{ scene_number }} из {{ total_scenes }}</p>
+        </div>
+        <div class="progress-block">
+            <p id="progress-text">{{ answered_count }} из {{ total_questions }} вопросов</p>
+            <div class="progress-bar">
+                <span id="progress-fill" style="width: {{ progress }}%;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scene-question-panel">
+      <div class="scene-card">
+          {% if scene.panorama_url or scene.image %}
+              <div id="panorama" class="panorama-container" data-image-url="{% if scene.panorama_url %}{{ scene.panorama_url }}{% else %}{{ scene.image.url }}{% endif %}"></div>
+              {% if scene.image %}
+                  <img id="fallback-image" src="{{ scene.image.url }}" alt="{{ scene.title }}" class="scene-image" style="display: none;" />
+              {% endif %}
+              {% if scene_number == 1 %}
+                  <div id="panorama-hint" class="panorama-hint" aria-hidden="true">Поверни сцену, чтобы осмотреться</div>
+              {% endif %}
+          {% else %}
+              <div class="scene-image scene-image-empty">Сцена без изображения</div>
+          {% endif %}
+      </div>
+
+      <div class="question-card quiz-sidecard">
+        <p class="eyebrow" id="question-counter">Вопрос {{ question_number }} из 2</p>
+        <h2 id="question-text">{{ question.text }}</h2>
+
+        <div class="options-grid" id="options-grid">
+            {% for option in options %}
+                <button class="quiz-option" type="button" data-answer-id="{{ option.pk }}">{{ option.text }}</button>
+            {% endfor %}
+        </div>
+
+        <div class="answer-feedback" id="answer-feedback" hidden>
+            <p id="feedback-text"></p>
+            <p id="explanation-text" class="explanation-text"></p>
+        </div>
+
+        <div class="quiz-actions">
+            <button class="button button-secondary" id="next-button" type="button" hidden>Далее</button>
+        </div>
+      </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'quiz/base.html' %}
+{% block content %}
+<section class="info-card">
+    <div>
+        <p class="eyebrow">Выбери уровень</p>
+        <h1>Сложность</h1>
+        <p class="section-text">Выбери один из трёх уровней и начни короткую историю-викторину.</p>
+    </div>
+    <div class="level-grid">
+        <a class="level-card" href="{% url 'quiz_start' %}?difficulty=easy">
+            <h2>Лёгкий</h2>
+            <p>Для уверенного старта.</p>
+        </a>
+        <a class="level-card" href="{% url 'quiz_start' %}?difficulty=medium">
+            <h2>Средний</h2>
+            <p>Немного сложнее, но всё ещё комфортно.</p>
+        </a>
+        <a class="level-card" href="{% url 'quiz_start' %}?difficulty=hard">
+            <h2>Сложный</h2>
+            <p>Готов к серьёзному испытанию?</p>
+        </a>
+    </div>
+</section>
+{% endblock %}
