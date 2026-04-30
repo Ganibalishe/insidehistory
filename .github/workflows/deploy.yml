@@ -1,0 +1,31 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via SSH
+      uses: appleboy/ssh-action@v1.2.0
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        port: ${{ secrets.SSH_PORT }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          set -e
+          cd /var/www/insidehistory
+          git config --global --add safe.directory /var/www/insidehistory
+          git pull origin main
+          set -a
+          source .env
+          set +a
+          .venv/bin/python manage.py migrate
+          .venv/bin/python manage.py collectstatic --noinput
+          systemctl restart insidehistory
+          systemctl status insidehistory --no-pager
