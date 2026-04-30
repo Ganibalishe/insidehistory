@@ -22,6 +22,7 @@ jobs:
             cd /var/www/insidehistory
             git config --global --add safe.directory /var/www/insidehistory
             git pull origin main
+            .venv/bin/pip install -r requirements.txt
             set -a
             source .env
             set +a
