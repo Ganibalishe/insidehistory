@@ -106,6 +106,12 @@ export DJANGO_USE_X_FORWARDED_PROTO=1
 
 `/media` и `/static` в production должны раздаваться reverse proxy (например, Nginx).
 
+### PostgreSQL (рекомендуется вместо SQLite)
+
+Локально по умолчанию используется `db.sqlite3`. Для production задайте `POSTGRES_HOST` (и при необходимости остальные переменные — см. `.env.example`); тогда `ENGINE` переключится на PostgreSQL.
+
+На сервере: установите PostgreSQL, создайте БД и пользователя, укажите креды в `.env` рядом с проектом, обновите зависимости (`pip install -r requirements.txt`), выполните `migrate`. Перенос данных с SQLite: с рабочей копии на SQLite `python manage.py dumpdata` → на пустой Postgres после `migrate` — `loaddata` (или наоборот: `dumpdata` на одной машине, на другой `loaddata` с теми же настройками). Сохраните копию `db.sqlite3` до переключения.
+
 ## Структура проекта
 
 - `inhistory/` — настройки проекта
