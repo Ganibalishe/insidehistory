@@ -4,6 +4,7 @@
 """
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
 from django.core.files import File
@@ -29,9 +30,15 @@ def persist_scene_bundle(
 ) -> dict:
     """
     questions: ровно 2 элемента — (text, explanation, [4 ответа], correct_index_1..4)
-    image_filename: имя файла в images_dir или пустая строка
+    image_filename: имя файла в images_dir или пустая строка; если файл не найден — сцена всё равно
+    сохраняется без изображения (в stderr будет предупреждение).
     """
-    stats: dict[str, bool] = {'scene_created': False, 'scene_updated': False, 'image_set': False}
+    stats: dict[str, bool] = {
+        'scene_created': False,
+        'scene_updated': False,
+        'image_set': False,
+        'image_missing': False,
+    }
 
     difficulty = difficulty.strip().lower()
     if difficulty not in ALLOWED_DIFFICULTY:
@@ -67,10 +74,17 @@ def persist_scene_bundle(
         normalized_questions.append((qtext, expl, cleaned_answers, correct_idx))
 
     image_filename = image_filename.strip()
+    image_resolved_path: Path | None = None
     if image_filename:
-        image_path = images_dir / image_filename
-        if not image_path.is_file():
-            raise FileNotFoundError(f'{context}: файл картинки не найден: {image_path}')
+        cand = images_dir / image_filename
+        if cand.is_file():
+            image_resolved_path = cand
+        else:
+            stats['image_missing'] = True
+            print(
+                f'{context}: файл картинки не найден ({cand}), сохраняем сцену без изображения',
+                file=sys.stderr,
+            )
 
     if dry_run:
         return stats
@@ -95,9 +109,8 @@ def persist_scene_bundle(
         scene.save(update_fields=['historical_period', 'event_year', 'description', 'panorama_url'])
         stats['scene_updated'] = True
 
-    if image_filename:
-        image_path = images_dir / image_filename
-        with open(image_path, 'rb') as fh:
+    if image_resolved_path is not None:
+        with open(image_resolved_path, 'rb') as fh:
             scene.image.save(image_filename, File(fh), save=True)
         stats['image_set'] = True
 

@@ -8,6 +8,8 @@
   .venv/bin/python scripts/import_scenes_json.py path/to/scenes.json
   .venv/bin/python scripts/import_scenes_json.py path/to/scenes.json --images-dir /path/to/images
   .venv/bin/python scripts/import_scenes_json.py path/to/scenes.json --dry-run
+
+Если указан image_file, а файла нет в --images-dir, сцена всё равно создаётся без картинки (предупреждение в stderr).
 """
 from __future__ import annotations
 
@@ -119,6 +121,7 @@ def main() -> int:
     created_scenes = 0
     updated_scenes = 0
     images_set = 0
+    images_missing = 0
     scenes_ok = 0
 
     with transaction.atomic():
@@ -144,15 +147,21 @@ def main() -> int:
                 updated_scenes += 1
             if stats.get('image_set'):
                 images_set += 1
+            if stats.get('image_missing'):
+                images_missing += 1
             scenes_ok += 1
 
     if args.dry_run:
         print(f'Dry-run: проверено сцен: {scenes_ok}')
+        if images_missing:
+            print(f'  без файла картинки (будут без image): {images_missing}', file=sys.stderr)
     else:
         print('Импорт завершён.')
         print(f'  сцен создано: {created_scenes}')
         print(f'  сцен обновлено (метаданные): {updated_scenes}')
         print(f'  картинок привязано: {images_set}')
+        if images_missing:
+            print(f'  картинок пропущено (файл не найден): {images_missing}')
         print(f'  сцен обработано: {scenes_ok}')
     return 0
 
