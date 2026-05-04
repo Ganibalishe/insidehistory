@@ -29,6 +29,19 @@ if DEBUG and not ALLOWED_HOSTS:
 if not DEBUG and not ALLOWED_HOSTS:
     raise RuntimeError('DJANGO_ALLOWED_HOSTS is required when DJANGO_DEBUG=0')
 
+_raw_csrf_origins = os.environ.get('DJANGO_CSRF_TRUSTED_ORIGINS', '').strip()
+if _raw_csrf_origins:
+    CSRF_TRUSTED_ORIGINS = [o.strip() for o in _raw_csrf_origins.split(',') if o.strip()]
+elif DEBUG:
+    CSRF_TRUSTED_ORIGINS = [
+        'http://127.0.0.1:8000',
+        'http://localhost:8000',
+        'http://127.0.0.1',
+        'http://localhost',
+    ]
+else:
+    CSRF_TRUSTED_ORIGINS = [f'https://{h}' for h in ALLOWED_HOSTS if h and '*' not in h]
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

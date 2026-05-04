@@ -5,6 +5,15 @@ function getCookie(name) {
     return '';
 }
 
+function getCsrfToken() {
+    const fromCookie = getCookie('csrftoken');
+    if (fromCookie) {
+        return fromCookie;
+    }
+    const fromInput = document.querySelector('[name=csrfmiddlewaretoken]');
+    return fromInput && fromInput.value ? fromInput.value : '';
+}
+
 function easeOutCubic(t) {
     return 1 - Math.pow(1 - t, 3);
 }
@@ -230,20 +239,28 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         answered = true;
         const selectedAnswerId = button.dataset.answerId;
-        const csrfToken = getCookie('csrftoken');
+        const csrfToken = getCsrfToken();
         const activeButtons = Array.from(document.querySelectorAll('.quiz-option'));
+
+        if (!csrfToken) {
+            answered = false;
+            feedbackText.textContent = 'Обновите страницу и попробуйте снова (не загрузилась защита формы).';
+            feedbackBlock.hidden = false;
+            return;
+        }
 
         activeButtons.forEach((item) => item.setAttribute('disabled', 'disabled'));
 
         const response = await fetch(answerUrl, {
             method: 'POST',
+            credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': csrfToken,
             },
             body: JSON.stringify({
-                question_id: currentQuestionId,
-                selected_answer_id: selectedAnswerId,
+                question_id: Number(currentQuestionId),
+                selected_answer_id: Number(selectedAnswerId),
             }),
         });
 
