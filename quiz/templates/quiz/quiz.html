@@ -1,20 +1,19 @@
 {% extends 'quiz/base.html' %}
 {% block content %}
-<section class="quiz-shell" id="quiz-shell" data-answer-url="{{ answer_url }}" data-question-id="{{ question.pk }}" data-is-first-scene="{% if scene_number == 1 %}true{% else %}false{% endif %}">
-    <div class="quiz-header">
-        <div>
-            <p class="eyebrow">Сцена {{ scene_number }} из {{ total_scenes }}</p>
-        </div>
-        <div class="progress-block">
-            <p id="progress-text">{{ answered_count }} из {{ total_questions }} вопросов</p>
-            <div class="progress-bar">
-                <span id="progress-fill" style="width: {{ progress }}%;"></span>
-            </div>
-        </div>
-    </div>
+<section class="quiz-shell quiz-shell--immersive" id="quiz-shell" data-answer-url="{{ answer_url }}" data-question-id="{{ question.pk }}" data-is-first-scene="{% if scene_number == 1 %}true{% else %}false{% endif %}">
+    <div class="scene-card scene-card--immersive">
+          <div class="quiz-header quiz-header--overlay">
+              <div>
+                  <p class="eyebrow">Сцена {{ scene_number }} из {{ total_scenes }}</p>
+              </div>
+              <div class="progress-block">
+                  <p id="progress-text">{{ answered_count }} из {{ total_questions }} вопросов</p>
+                  <div class="progress-bar">
+                      <span id="progress-fill" style="width: {{ progress }}%;"></span>
+                  </div>
+              </div>
+          </div>
 
-    <div class="scene-question-panel">
-      <div class="scene-card">
           {% if scene.panorama_url or scene.image %}
               <div id="panorama" class="panorama-container" data-image-url="{% if scene.panorama_url %}{{ scene.panorama_url }}{% else %}{{ scene.image.url }}{% endif %}"></div>
               {% if scene.image %}
@@ -26,9 +25,8 @@
           {% else %}
               <div class="scene-image scene-image-empty">Сцена без изображения</div>
           {% endif %}
-      </div>
 
-      <div class="question-card quiz-sidecard">
+      <div class="question-card question-card--overlay">
         <p class="eyebrow" id="question-counter">Вопрос {{ question_number }} из 2</p>
         <h2 id="question-text">{{ question.text }}</h2>
 

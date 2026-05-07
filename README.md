@@ -63,6 +63,48 @@ http://127.0.0.1:8000/
 .venv/bin/python manage.py migrate
 ```
 
+## AI-генерация сцен (OpenAI -> OpenAI Images -> БД)
+
+1. Подготовьте справочник событий (дата + событие), например:
+- `quiz/fixtures/events_reference_template.json`
+
+2. Задайте ключи API:
+
+```bash
+export OPENAI_API_KEY='your-key'
+export OPENAI_MODEL='gpt-4.1-mini'
+export OPENAI_IMAGE_MODEL='gpt-image-2'
+export GEMINI_API_KEY='your-key'  # fallback для текстовой генерации, если OpenAI по тексту недоступен
+export GEMINI_TEXT_MODEL='gemini-2.0-flash'
+```
+
+3. Сгенерируйте сцены в формате `dump.json` + `image_prompt`:
+
+```bash
+.venv/bin/python scripts/generate_scenes_ai.py \
+  --input quiz/fixtures/events_reference_template.json \
+  --output quiz/fixtures/generated_scenes.json
+```
+
+4. Сгенерируйте изображения через OpenAI `gpt-image-2` (сохранит в `media/scenes` и заполнит `image_file`):
+
+```bash
+.venv/bin/python scripts/generate_scenes_ai.py \
+  --input quiz/fixtures/events_reference_template.json \
+  --output quiz/fixtures/generated_scenes.json \
+  --generate-images
+```
+
+5. Полный end-to-end (генерация сцен + картинок + импорт в БД):
+
+```bash
+.venv/bin/python scripts/generate_scenes_ai.py \
+  --input quiz/fixtures/events_reference_template.json \
+  --output quiz/fixtures/generated_scenes.json \
+  --generate-images \
+  --import-db
+```
+
 ## Админка
 
 Создайте суперпользователя и войдите в админку:

@@ -224,6 +224,28 @@ textarea {
   gap: 24px;
 }
 
+.quiz-shell--immersive {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  min-height: calc(100vh - 120px);
+}
+
+.quiz-header--overlay {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  z-index: 12;
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(2, 6, 23, 0.85), rgba(2, 6, 23, 0.45));
+  backdrop-filter: blur(4px);
+}
+
 .scene-card,
 .question-card,
 .result-card {
@@ -232,6 +254,13 @@ textarea {
 
 .scene-card {
   position: relative;
+}
+
+.scene-card--immersive {
+  margin-top: 0;
+  min-height: calc(100vh - 120px);
+  border-radius: 22px;
+  overflow: hidden;
 }
 
 @media (min-width: 1200px) {
@@ -258,17 +287,17 @@ textarea {
 .scene-image {
   display: block;
   width: 100%;
-  border-radius: 20px;
+  border-radius: 0;
   object-fit: cover;
-  max-height: 420px;
+  height: 100%;
+  max-height: none;
 }
 
 .panorama-container {
   width: 100%;
-  aspect-ratio: 2 / 1;
-  min-height: 420px;
-  max-height: 80vh;
-  border-radius: 20px;
+  min-height: calc(100vh - 120px);
+  max-height: none;
+  border-radius: 0;
   overflow: hidden;
   position: relative;
   background: #111;
@@ -343,11 +372,31 @@ textarea {
 }
 
 .scene-image-empty {
-  min-height: 260px;
+  min-height: calc(100vh - 120px);
   display: grid;
   place-items: center;
   background: rgba(148, 163, 184, 0.1);
   color: var(--muted);
+}
+
+.question-card--overlay {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 13;
+  margin-top: 0;
+  max-width: 760px;
+  padding: 22px 24px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.36), rgba(15, 23, 42, 0.48));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(6px);
+  border-radius: 24px;
+}
+
+.question-card--overlay h2 {
+  font-size: clamp(1.08rem, 1.35vw, 1.26rem);
+  line-height: 1.3;
 }
 
 .scene-description {
@@ -356,8 +405,9 @@ textarea {
 
 .options-grid {
   display: grid;
-  gap: 14px;
+  gap: 12px;
   margin-top: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .quiz-option {
@@ -367,7 +417,9 @@ textarea {
   border: 1px solid rgba(148, 163, 184, 0.2);
   color: var(--text);
   border-radius: 16px;
-  padding: 18px 20px;
+  padding: 14px 16px;
+  font-size: 0.93rem;
+  line-height: 1.35;
   cursor: pointer;
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
@@ -553,6 +605,31 @@ textarea {
 }
 
 @media (max-width: 960px) {
+  .quiz-shell--immersive {
+    min-height: calc(100vh - 100px);
+  }
+
+  .scene-card--immersive,
+  .panorama-container,
+  .scene-image-empty {
+    min-height: calc(100vh - 100px);
+  }
+
+  .question-card--overlay {
+    max-width: none;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    padding: 18px;
+  }
+
+  .quiz-header--overlay {
+    left: 10px;
+    right: 10px;
+    top: 10px;
+    padding: 10px 12px;
+  }
+
   .hero-image {
     height: 360px;
   }
@@ -573,6 +650,57 @@ textarea {
 }
 
 @media (max-width: 680px) {
+  .scene-card--immersive,
+  .panorama-container,
+  .scene-image-empty {
+    min-height: calc(100vh - 140px);
+  }
+
+  .quiz-header--overlay {
+    left: 8px;
+    right: 8px;
+    top: 8px;
+    padding: 8px 10px;
+    border-radius: 12px;
+  }
+
+  .quiz-header--overlay .eyebrow {
+    margin: 0;
+    font-size: 0.78rem;
+  }
+
+  .quiz-header--overlay #progress-text {
+    margin: 6px 0 0;
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .quiz-header--overlay .progress-bar {
+    margin-top: 8px;
+    height: 8px;
+  }
+
+  .question-card--overlay {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    padding: 14px 14px 12px;
+    border-radius: 16px;
+    max-height: 48vh;
+    overflow-y: auto;
+  }
+
+  .question-card--overlay h2 {
+    font-size: 0.95rem;
+    margin-top: 8px;
+  }
+
+  .options-grid {
+    gap: 8px;
+    margin-top: 10px;
+    grid-template-columns: 1fr;
+  }
+
   .hero {
     gap: 20px;
   }
@@ -586,8 +714,8 @@ textarea {
   }
 
   .quiz-option {
-    font-size: 0.98rem;
-    padding: 16px;
+    font-size: 0.9rem;
+    padding: 12px;
   }
 
   .result-card {
