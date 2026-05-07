@@ -185,6 +185,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const explanationText = document.getElementById('explanation-text');
     const nextButton = document.getElementById('next-button');
     const questionCounter = document.getElementById('question-counter');
+    const questionNumberMobile = document.getElementById('question-number-mobile');
     const questionText = document.getElementById('question-text');
     const progressText = document.getElementById('progress-text');
     const progressFill = document.getElementById('progress-fill');
@@ -216,6 +217,9 @@ window.addEventListener('DOMContentLoaded', () => {
         quizShell.dataset.questionId = currentQuestionId;
         if (questionCounter) {
             questionCounter.textContent = `Вопрос ${nextQuestion.question_number} из 2`;
+        }
+        if (questionNumberMobile) {
+            questionNumberMobile.textContent = String(nextQuestion.question_number);
         }
         if (questionText) {
             questionText.textContent = nextQuestion.question_text;

@@ -246,6 +246,14 @@ textarea {
   backdrop-filter: blur(4px);
 }
 
+.quiz-mobile-meta {
+  display: none;
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+  color: var(--text);
+  opacity: 0.9;
+}
+
 .scene-card,
 .question-card,
 .result-card {
@@ -653,7 +661,7 @@ textarea {
   .scene-card--immersive,
   .panorama-container,
   .scene-image-empty {
-    min-height: calc(100vh - 140px);
+    min-height: calc(100svh - 110px);
   }
 
   .quiz-header--overlay {
@@ -665,8 +673,17 @@ textarea {
   }
 
   .quiz-header--overlay .eyebrow {
+    display: none;
     margin: 0;
     font-size: 0.78rem;
+  }
+
+  .quiz-mobile-meta {
+    display: block;
+  }
+
+  .quiz-header--overlay .progress-block {
+    display: none;
   }
 
   .quiz-header--overlay #progress-text {
@@ -684,21 +701,22 @@ textarea {
     left: 8px;
     right: 8px;
     bottom: 8px;
-    padding: 14px 14px 12px;
+    padding: 12px 12px 10px;
     border-radius: 16px;
-    max-height: 48vh;
+    max-height: 36svh;
     overflow-y: auto;
   }
 
   .question-card--overlay h2 {
-    font-size: 0.95rem;
-    margin-top: 8px;
+    font-size: 0.88rem;
+    line-height: 1.25;
+    margin-top: 6px;
   }
 
   .options-grid {
     gap: 8px;
-    margin-top: 10px;
-    grid-template-columns: 1fr;
+    margin-top: 8px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .hero {
@@ -714,8 +732,9 @@ textarea {
   }
 
   .quiz-option {
-    font-size: 0.9rem;
-    padding: 12px;
+    font-size: 0.84rem;
+    padding: 10px 10px;
+    border-radius: 12px;
   }
 
   .result-card {
