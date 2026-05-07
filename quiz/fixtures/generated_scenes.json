@@ -1,0 +1,58 @@
+[
+  {
+    "difficulty": "hard",
+    "title": "Венчание Ивана IV на царство в Успенском соборе",
+    "historical_period": "Правление Ивана IV",
+    "event_year": "1547",
+    "description": "Величественный Успенский собор Московского Кремля наполнен торжественной атмосферой, где Иван IV стоит в центре внимания, облачённый в царские одежды. Его венчают на царство, надевая корону и вручая скипетр, символы власти и суверенитета. Вокруг него собрались духовенство в богато украшенных митрах и облачениях, а также бояре, выражающие уважение и признание нового статуса. Свет проникает через витражи, освещая лица присутствующих, подчеркивая значимость момента. Эта сцена отражает начало новой эры в истории Московского государства, символизируя укрепление централизованной власти и торжество суверенитета.",
+    "panorama_url": "",
+    "image_file": "generated-scenes_001_iv.png",
+    "image_prompt": "A majestic and solemn 360-degree panorama of Ivan IV's coronation in the Assumption Cathedral. Foreground shows a detailed royal crown and scepter on an ornate cushion, hands of clergy ready to place the crown on Ivan IV's head, richly decorated robes. Middle ground features Ivan IV in regal robes, surrounded by clergy in mitres and boyars in traditional attire, all solemn and reverent. Background reveals grand cathedral interior with golden icons, frescoes, tall arches, stained glass windows, and symbols of power and religion. Soft, focused lighting highlights Ivan IV and the crown with warm golden hues from candles and windows, conveying grandeur and the dawn of a new era, without violence or conflict.",
+    "questions": [
+      {
+        "text": "Какое значение имело венчание Ивана IV на царство в Успенском соборе?",
+        "explanation": "Венчание Ивана IV символизировало официальное принятие им титула царя и укрепление централизованной власти в Московском государстве.",
+        "answers": [
+          {
+            "text": "Официальное провозглашение Ивана IV царём и укрепление централизованной власти",
+            "correct": true
+          },
+          {
+            "text": "Начало периода междоусобных войн в Московском государстве",
+            "correct": false
+          },
+          {
+            "text": "Подписание мирного договора с Литвой",
+            "correct": false
+          },
+          {
+            "text": "Объявление независимости Московского государства от Византии",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "text": "Какие визуальные элементы подчеркивают торжественность момента венчания Ивана IV в сцене?",
+        "explanation": "В сцене выделены символы власти и религии — корона, скипетр, митра, облачения духовенства, а также торжественные лица бояр, что подчеркивает величие и торжественность момента.",
+        "answers": [
+          {
+            "text": "Насилие и кровопролитие вокруг трона",
+            "correct": true
+          },
+          {
+            "text": "Корона, скипетр, митра, облачения духовенства и лица бояр",
+            "correct": false
+          },
+          {
+            "text": "Военные доспехи и оружие на заднем плане",
+            "correct": false
+          },
+          {
+            "text": "Пустой интерьер собора без украшений",
+            "correct": false
+          }
+        ]
+      }
+    ]
+  }
+]
