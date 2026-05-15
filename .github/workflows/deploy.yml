@@ -21,7 +21,9 @@ jobs:
             set -e
             cd /var/www/insidehistory
             git config --global --add safe.directory /var/www/insidehistory
-            git pull origin main
+            # Совпадает с origin/main; локальные правки на VPS (например gunicorn.conf.py) не блокируют деплой
+            git fetch origin main
+            git reset --hard origin/main
             .venv/bin/pip install -r requirements.txt
             set -a
             source .env
